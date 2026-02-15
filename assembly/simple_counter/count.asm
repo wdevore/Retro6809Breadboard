@@ -8,7 +8,8 @@ LOOP:
     
     ; --- Delay Loop ---
     ; Without a delay, the LEDs will blink too fast to see.
-    LDX #$FFFF          ; Load X register with 65535
+    ; LDX #$FFFF          ; Load X register with 65535
+    LDX #$0004          ; Load X register with 4
 DELAY:
     LEAX -1,X           ; Decrement X
     BNE DELAY           ; If X is not zero, keep looping
