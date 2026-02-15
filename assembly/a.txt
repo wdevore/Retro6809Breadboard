@@ -1,0 +1,5 @@
+00000000  5f f7 00 00 8e ff ff 30  1f 26 fc 5c 20 f3 ff ff  |_......0.&.\ ...|
+00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  |................|
+*
+00007ff0  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff 80 00  |................|
+00008000

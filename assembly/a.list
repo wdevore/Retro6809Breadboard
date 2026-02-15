@@ -1,0 +1,26 @@
+                      (        count.asm):00001             ORG $8000           ; Start of code (somewhere in your 32K ROM)
+                      (        count.asm):00002         
+8000                  (        count.asm):00003         START:
+8000 5F               (        count.asm):00004             CLRB                ; Clear Register B (B = 0)
+                      (        count.asm):00005             
+8001                  (        count.asm):00006         LOOP:
+8001 F70000           (        count.asm):00007             STB >$0000          ; Write the value of B to your LED Latch at $0000
+                      (        count.asm):00008             
+                      (        count.asm):00009             ; --- Delay Loop ---
+                      (        count.asm):00010             ; Without a delay, the LEDs will blink too fast to see.
+8004 8EFFFF           (        count.asm):00011             LDX #$FFFF          ; Load X register with 65535
+8007                  (        count.asm):00012         DELAY:
+8007 301F             (        count.asm):00013             LEAX -1,X           ; Decrement X
+8009 26FC             (        count.asm):00014             BNE DELAY           ; If X is not zero, keep looping
+                      (        count.asm):00015             ; ------------------
+                      (        count.asm):00016         
+800B 5C               (        count.asm):00017             INCB                ; Increment Register B (B = B + 1)
+800C 20F3             (        count.asm):00018             BRA LOOP            ; Branch back to the start of the loop
+                      (        count.asm):00019         
+                      (        count.asm):00020             ; --- Fill/Pad ROM ---
+                      (        count.asm):00021             ; FILL $FF,$FFFE-*   ; Fill memory with FF up to $FFFE
+                      (        count.asm):00022         
+                      (        count.asm):00023             ; --- Reset Vector ---
+                      (        count.asm):00024             ; The 6809 looks at $FFFE-$FFFF to find the start address after a reset.
+                      (        count.asm):00025             ORG $FFFE
+FFFE 8000             (        count.asm):00026             FDB START           ; Form Double Byte: Stores the address of START
