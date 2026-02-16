@@ -2,11 +2,11 @@
 
 > lwasm -9 -f hex -la.list count.asm 
 
-or
+or for programming to ROM chip
 
 > lwasm -9 -f raw count.asm 
 
-then
+then (optional)
 
 > hexdump -C a.bin > a.txt
 
